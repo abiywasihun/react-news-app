@@ -1,0 +1,33 @@
+.topbar-area{
+	background: #1c3459;
+    padding: 18px 0;
+}
+.nav-ul{
+	list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-between;
+}
+.nav-ul li a{
+	color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    text-decoration: none;
+}
+.nav-social-media{
+	color: #ffffff;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 50%;
+}
+.nav-middle{
+padding: 25px 0;
+}
+.dropdowns{
+    width: 33% !important;
+    border-top-right-radius: unset !important;
+    border-bottom-right-radius: unset !important;
+}

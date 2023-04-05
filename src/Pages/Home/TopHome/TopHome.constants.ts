@@ -1,0 +1,6 @@
+export const GET_TOP_HOME_LIST_REQUESTED =
+  "views/TopHome/GET_TOP_HOME_LIST_REQUESTED"
+export const GET_TOP_HOME_LIST_SUCCESS =
+  "views/TopHome/GET_TOP_HOME_LIST_SUCCESS"
+export const GET_TOP_HOME_LIST_FAILED =
+  "views/TopHome/GET_TOP_HOME_LIST_FAILED"
