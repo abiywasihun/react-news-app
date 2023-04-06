@@ -1,10 +1,10 @@
-import React, { lazy, Suspense } from "react"
-import { Routes,Route } from "react-router-dom"
-import { PATH } from "../constants/paths"
-import Loading from "../Components/Loading/Loading"
+import React, { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { PATH } from '../constants/paths';
+import Loading from '../Components/Loading/Loading';
 const SearchItem = lazy(
-  () => import("../Pages/Search/Search")
-)
+  () => import('../Pages/Search/Search'),
+);
 export default function SearchRoutes() {
   return (
     <Routes>
@@ -17,5 +17,5 @@ export default function SearchRoutes() {
         )}
       />
     </Routes>
-  )
+  );
 }

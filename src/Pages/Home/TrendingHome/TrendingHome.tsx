@@ -1,9 +1,9 @@
-import React, { useEffect,useState } from 'react'
-import { connect, ConnectedProps } from "react-redux"
+import React, { useEffect } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import Container from 'react-bootstrap/Container';
-import { getTrendingNewsList,getArtNewsList,getScienceNewsList,getWorldNewsList } from "./TrendingHome.thunks"
-import TrendingCards from "../../../Components/Cards/TrendingCards"
-import TrendingTab from "../../../Components/Tabs/TrendingTab"
+import { getTrendingNewsList, getArtNewsList, getScienceNewsList, getWorldNewsList } from './TrendingHome.thunks';
+import TrendingCards from '../../../Components/Cards/TrendingCards';
+import TrendingTab from '../../../Components/Tabs/TrendingTab';
 import Tab from 'react-bootstrap/Tab';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
@@ -15,41 +15,42 @@ const mapStateToProps = (state: any) => ({
   artNews: state.trendingHome.artNews,
   scienceNews: state.trendingHome.scienceNews,
   worldNews: state.trendingHome.worldNews,
-})
+});
 const mapDispatchToProps = {
   getTrendingNewsList,
   getArtNewsList,
   getScienceNewsList,
-  getWorldNewsList
-}
+  getWorldNewsList,
+};
 
-const connector = connect(mapStateToProps, mapDispatchToProps)
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 interface Props extends ConnectedProps<typeof connector> {}
-const NavItem = ({eventKey, displayText}) => (
+const NavItem = ({ eventKey, displayText }) => (
       <Nav.Item>
         <Nav.Link eventKey={eventKey}>{displayText}</Nav.Link>
       </Nav.Item>
-      )
+);
 
 const TrendingHome = (props: Props) => {
   const { getTrendingNewsList, getArtNewsList, getScienceNewsList,
-          getWorldNewsList, trendingNews,artNews, scienceNews,worldNews } = props
+    getWorldNewsList, trendingNews, artNews, scienceNews, worldNews } = props;
 
   useEffect(() => {
-    getTrendingNewsList()
-    getArtNewsList()
-    getScienceNewsList()
-    getWorldNewsList()
-  }, [])
-	return(
+    getTrendingNewsList();
+    getArtNewsList();
+    getScienceNewsList();
+    getWorldNewsList();
+  }, [getTrendingNewsList, getArtNewsList, getScienceNewsList,
+    getWorldNewsList]);
+  return (
 		<div className="post-area pt-20 pb-16 go-top">
   <Container>
     <Row>
     <Col xs={6} md={3}>
-   {trendingNews.slice(1, 3).map((item, index) =>(
+   {trendingNews.slice(1, 3).map((item) =>(
    <TrendingCards item={item} />
-    ))}
+   ))}
     </Col>
     <Col xs={12} md={6}>
       
@@ -83,14 +84,14 @@ const TrendingHome = (props: Props) => {
         </Tab.Container>
       </Col>
     <Col xs={6} md={3}>
-       {trendingNews.slice(3, 5).map((item, index) =>(
+       {trendingNews.slice(3, 5).map((item) =>(
         <TrendingCards item={item} />
-      ))}
+       ))}
     </Col>
     </Row>
   </Container>
 </div>
 
-		)
-}
-export default connector(TrendingHome)
+  );
+};
+export default connector(TrendingHome);

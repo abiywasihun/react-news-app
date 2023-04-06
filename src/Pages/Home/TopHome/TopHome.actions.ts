@@ -1,17 +1,17 @@
-import * as types from "./TopHome.constants"
+import * as types from './TopHome.constants';
 
 export const getTopHomeRequested = () => ({
-  type: types.GET_TOP_HOME_LIST_REQUESTED
-})
+  type: types.GET_TOP_HOME_LIST_REQUESTED,
+});
 
 export const getTopHomeSuccess = payload => {
   return {
     type: types.GET_TOP_HOME_LIST_SUCCESS,
-    payload
-  }
-}
+    payload,
+  };
+};
 
 export const getTopHomeFailed = payload => ({
   type: types.GET_TOP_HOME_LIST_FAILED,
-  payload
-})
+  payload,
+});

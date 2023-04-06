@@ -1,50 +1,51 @@
-import React, { useState } from "react"
-import { connect, ConnectedProps } from "react-redux"
-import { login } from "./Login.thunks"
-import { Link } from "react-router-dom";
-import { Title } from "./Login.styles"
+import React, { useState } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
+import { login } from './Login.thunks';
+import { Link } from 'react-router-dom';
+import { Title } from './Login.styles';
 import { useNavigate } from 'react-router-dom';
-import { PATH } from "../../constants/paths"
+import { PATH } from '../../constants/paths';
 
 const mapStateToProps = state => ({
-  loading: state.loading
-})
+  loading: state.loading,
+});
 
 const mapDispatchToProps = {
-  login
-}
+  login,
+};
 
-const connector = connect(mapStateToProps, mapDispatchToProps)
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 interface Props extends ConnectedProps<typeof connector> {}
 
 const Login = (props: Props) => {
-  const { login, loading } = props
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
-  const navigate = useNavigate()
-  const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value)
-  }
+  const { login, loading } = props;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
 
   const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value)
-  }
+    setPassword(event.target.value);
+  };
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+    event.preventDefault();
     if (!loading) {
-      const payload = { username, password }
+      const payload = { email, password };
       login(payload)
         .then(res => {
-          navigate(PATH.HOME)
+          console.log(res);
+          navigate(PATH.HOME);
         })
         .catch(err => {
-          setError(err.payload.message)
-        })
+          setError(err.payload.response?.data.message);
+        });
     }
-  }
+  };
 
   return (
     <div className="container">
@@ -55,8 +56,8 @@ const Login = (props: Props) => {
             <p className="text-muted">Please enter your login and password!</p>
             <input
               type="text"
-              placeholder="Username"
-              onChange={handleUsername}
+              placeholder="Email"
+              onChange={handleEmail}
               className="form-control form-control-lg mb-4"
             />
             <input
@@ -76,7 +77,7 @@ const Login = (props: Props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default connector(Login)
+export default connector(Login);

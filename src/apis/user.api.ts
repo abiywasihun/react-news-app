@@ -1,52 +1,31 @@
-import { newsApiAxios} from './axios';
-import { ENDPOINT } from "../constants/endpoint"
-import { NEWS_API_KEY } from '../utils/config';
+import { laravelApiAxios } from './axios';
+import { ENDPOINT } from '../constants/endpoint';
 
 
 export const loginApi = ({
   email,
-  password
+  password,
 }: any): Promise<any> =>{
-  const user={
+  const user = {
     email,
-    password
-  }
-  return laravelApiAxios.post(ENDPOINT.LOGIN,user);
-}
-
-export const  = (): Promise<any> =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (username === "admin" && password === "123") {
-        resolve({
-          data: {
-            access_token: "82jdu82193yh90sad83hxfgsd"
-          },
-          message: "Login thành công"
-        })
-      } else {
-        reject(new Error("Login thất bại"))
-      }
-    }, 100)
-  })
+    password,
+  };
+  return laravelApiAxios.post(ENDPOINT.LOGIN, user);
+};
 
 
-export const signupApi =({
+
+export const signupApi = ({
   name,
-  username,
-  password
-}: any): Promise<any> =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (username === "admin" && password === "123") {
-        resolve({
-          data: {
-            access_token: "82jdu82193yh90sad83hxfgsd"
-          },
-          message: "Login thành công"
-        })
-      } else {
-        reject(new Error("Login thất bại"))
-      }
-    }, 100)
-  })
+  email,
+  password,
+  confirmPassword,
+}: any):  Promise<any> =>{
+  const user = {
+    name,
+    email,
+    password,
+    password_confirmation:confirmPassword,
+  };
+  return laravelApiAxios.post(ENDPOINT.REGISTER, user);
+};

@@ -1,21 +1,20 @@
-import React from 'react'
-import { BsFacebook } from "react-icons/bs";
-import { BsTwitter } from "react-icons/bs";
-import { BsYoutube } from "react-icons/bs";
-import { BsInstagram } from "react-icons/bs";
-import { BsGoogle } from "react-icons/bs";
+import React from 'react';
+import { BsFacebook } from 'react-icons/bs';
+import { BsTwitter } from 'react-icons/bs';
+import { BsYoutube } from 'react-icons/bs';
+import { BsInstagram } from 'react-icons/bs';
+import { BsGoogle } from 'react-icons/bs';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import SearchBar from '../SearchBar/SearchBar'
-import ad from '../../assets/1.png'
+import SearchBar from '../SearchBar/SearchBar';
+import ad from '../../assets/1.png';
 import './Header.css';
 
-const Header =()=>{
+const Header = ()=>{
 
   return (
     <>
@@ -70,7 +69,7 @@ const Header =()=>{
         </Container>
       </Navbar>
     </>
-  )
-}
+  );
+};
 
 export default Header;

@@ -1,8 +1,8 @@
-import React, { lazy, Suspense } from "react"
-import { Route, Routes } from "react-router-dom"
-import { PATH } from "../constants/paths"
-import Loading from "../Components/Loading/Loading"
-const Login = lazy(() => import("../Pages/Login/Login"))
+import React, { lazy, Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { PATH } from '../constants/paths';
+import Loading from '../Components/Loading/Loading';
+const Login = lazy(() => import('../Pages/Login/Login'));
 
 export default function LoginRoutes() {
   return (
@@ -16,5 +16,5 @@ export default function LoginRoutes() {
         )}
       />
     </Routes>
-  )
+  );
 }

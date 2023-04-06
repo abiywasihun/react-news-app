@@ -1,63 +1,64 @@
-import React, { useState } from "react"
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import { connect, ConnectedProps } from "react-redux"
-import {getsearchApi} from '../../Pages/Search/Search.thunks'
+import { connect, ConnectedProps } from 'react-redux';
+import { getsearchApi } from '../../Pages/Search/Search.thunks';
 import { useNavigate } from 'react-router-dom';
-import { PATH } from "../../constants/paths"
-const categories=[
-    'All categories',
-    'Business',
-    'Entertainment',
-    'General',
-    'Health',
-    'Science',
-    'Sports',
-    'Technology',
-    ]
+import { PATH } from '../../constants/paths';
+const categories = [
+  'All categories',
+  'Business',
+  'Entertainment',
+  'General',
+  'Health',
+  'Science',
+  'Sports',
+  'Technology',
+];
       
 const mapStateToProps = state => ({
-  loading: state.loading
-})
+  loading: state.loading,
+});
 
 const mapDispatchToProps = {
-  getsearchApi
-}
+  getsearchApi,
+};
 
-const connector = connect(mapStateToProps, mapDispatchToProps)
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 interface Props extends ConnectedProps<typeof connector> {}
-const SearchBar=(props: Props)=>{
-  const { getsearchApi, loading } = props
-  const [keyword, setKeyword] = useState("")
-  const [category, setCategory] = useState("")
-  const navigate = useNavigate()
-   const handleKeyword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(event.target.value)
-  }
+const SearchBar = (props: Props)=>{
+  const { getsearchApi } = props;
+  const [keyword, setKeyword] = useState('');
+  const [category, setCategory] = useState('');
+  const navigate = useNavigate();
+  const handleKeyword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(event.target.value);
+  };
 
   const handleCategory = (event: any) => {
-    setCategory(event.target.value)
-  }
-   const search = async (event: any) => {
-    event.preventDefault()
-     let payload=''
-      category!=='' &&  (payload+='category='+category+'&')
-      keyword!=='' && ( payload+='q='+keyword+'&')
-      getsearchApi(payload)
-        .then(res => {
-          navigate(PATH.SEARCH)
-        })
-        .catch(err => {
-          console.log(err.payload.message)
-        })
-  }
+    setCategory(event.target.value);
+  };
+  const search = async (event: any) => {
+    event.preventDefault();
+    let payload = '';
+    payload  = category !== '' ? payload + 'category=' + category + '&' : payload + '';
+    payload  = keyword !== '' ? payload + 'q=' + keyword + '&' : payload + '';
+    getsearchApi(payload)
+      .then(res => {
+        navigate(PATH.SEARCH);
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err.payload.message);
+      });
+  };
 
-	return(
+  return (
     <div className=" w-full flex">
         <label htmlFor="search-dropdown" className=" mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Your Email</label>
          <Form.Select onChange={handleCategory} className=" flex-shrink-0 z-10 dropdowns inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600">
-        {categories.map((item,index)=>(
-        <option className=" z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" disabled={index==0}>{item}</option>
+        {categories.map((item, index)=>(
+        <option className=" z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" disabled={index === 0}>{item}</option>
         ))}
         </Form.Select>
         <div className=" relative w-full">
@@ -68,8 +69,8 @@ const SearchBar=(props: Props)=>{
             </button>
         </div>
     </div>
-)
+  );
 
-}
+};
 
-export default connector(SearchBar)
+export default connector(SearchBar);
