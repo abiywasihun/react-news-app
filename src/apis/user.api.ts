@@ -29,3 +29,8 @@ export const signupApi = ({
   };
   return laravelApiAxios.post(ENDPOINT.REGISTER, user);
 };
+
+export const getAllPreferences = (): Promise<any> =>{
+  const endpoint = ENDPOINT.PREFERENCE;
+  return laravelApiAxios.get(endpoint);
+};

@@ -33,11 +33,11 @@ guardianApiAxios.interceptors.response.use(
 //This endpoint is from laravl
 
 function authRequestInterceptor(config: InternalAxiosRequestConfig) {
-  const token = storage.getToken();
+  const user = storage.getToken();
   config.headers = config.headers ?? {};
   
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  if (user) {
+    config.headers.Authorization = `Bearer ${user.token}`;
   }
   config.headers.Accept = 'application/vnd.api+json';
   return config;

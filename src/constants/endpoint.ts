@@ -10,6 +10,6 @@ export const ENDPOINT = {
   GUARDIANPOLITICS:'search?q=politics',
   LOGIN:'login',
   REGISTER:'register',
-  PREFERENCE:'preference',
+  PREFERENCE:'preferences',
   LOGOUT:'logout',
 };

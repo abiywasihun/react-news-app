@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BsFacebook } from 'react-icons/bs';
 import { BsTwitter } from 'react-icons/bs';
 import { BsYoutube } from 'react-icons/bs';
@@ -8,13 +8,35 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { logout } from '../../App/App.thunks';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
+import { PATH } from '../../constants/paths';
+import { Link } from 'react-router-dom';
+import { connect, ConnectedProps } from 'react-redux';
 import SearchBar from '../SearchBar/SearchBar';
 import ad from '../../assets/1.png';
 import './Header.css';
 
-const Header = ()=>{
+const mapStateToProps = state => ({
+  preference: state.app.preference,
+  isAuthenticated: state.app.isAuthenticated,
+});
+
+const mapDispatchToProps = {
+  logout,
+};
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+interface Props extends ConnectedProps<typeof connector> {}
+const Header = (props: Props)=>{
+  const { logout, preference, isAuthenticated } = props;
+  const handleLogout = () => logout();
+
+  useEffect(() => {
+    console.log(preference, isAuthenticated);
+  }, [preference]);
 
   return (
     <>
@@ -66,10 +88,18 @@ const Header = ()=>{
           <Form className="d-flex w-1/2">
             <SearchBar />
           </Form>
+          <Nav className="ml-4">
+           {isAuthenticated ? (
+            <Nav.Link className="text-white" onClick={handleLogout}>Logout</Nav.Link>
+           ) : (
+            <><Nav.Link><Link className="text-white no-underline" to={PATH.LOGIN}>Login</Link></Nav.Link>
+            <Nav.Link><Link  className="text-white no-underline" to={PATH.SIGNUP}>Register</Link></Nav.Link></>)}
+          </Nav>
         </Container>
       </Navbar>
     </>
   );
 };
 
-export default Header;
+
+export default connector(Header);

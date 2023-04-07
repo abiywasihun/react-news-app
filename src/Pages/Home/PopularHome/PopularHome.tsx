@@ -38,7 +38,6 @@ const PopularHome = (props: Props) => {
     getEconomyNewsList();
     getPoliticsNewsList();
   }, [getPopularNewsList, getEconomyNewsList, getPoliticsNewsList]);
-  console.log(popularNews);
   return (
 		<div className="post-area bg-sky pt-20  pb-16 go-top">
 		<Container>
