@@ -5,6 +5,6 @@ import { NEWS_API_KEY } from '../utils/config';
 
 export const searchNewsApi = (search:string):
 Promise<any> =>{
-  const endpoint = ENDPOINT.TOPHEADLINES + '?' + search + 'apiKey=' + NEWS_API_KEY;
+  const endpoint = ENDPOINT.TOPHEADLINES + '?' + search + 'pageSize=12&apiKey=' + NEWS_API_KEY;
   return newsApiAxios.get(endpoint);
 };

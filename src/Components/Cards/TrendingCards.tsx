@@ -11,7 +11,7 @@ const TrendingCards = ({ item }:any)=>(
       <div className="post-meta-single">
         <ul>
           <li className="mb-1.5">
-            <a className="tag-base tag-blue" href="#/cat-page">
+            <a className="tag-base tag-blue" href={item.url}>
               {item.item_type}
             </a>
           </li>

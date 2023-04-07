@@ -1,15 +1,17 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect, useCallback  }  from 'react';
 import Container from 'react-bootstrap/Container';
 import { connect, ConnectedProps } from 'react-redux';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { getsearchApi } from './Search.thunks';
+import { SourceArrays } from '../../constants/array';
 import Form from 'react-bootstrap/Form';
 import MainLayout from '../../layouts/MainLayout';
+import ErrorToast from '../../Components/Toast/ErrorToast';
+import SearchCard from '../../Components/Cards/SearchCard';
 import './Search.css';
 
 const mapStateToProps = state => ({
-  loading: state.loading,
   searchNews:state.searchApi.searchNews,
   searchBar:state.searchApi.searchBar,
 });
@@ -23,32 +25,42 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 interface Props extends ConnectedProps<typeof connector> {}
 
 const Search = (props: Props)=>{
-  const { getsearchApi, searchNews, searchBar, loading } = props;
+  const { getsearchApi, searchNews, searchBar } = props;
   const [date, setDate] = useState('');
-  const [source, setSource] = useState('');
-  const onSearch = async () => {
-    if (!loading) {
-      let payload = searchBar;
+  const [source, setSource] = useState<any[]>([]);
+  const [error, setError] = useState(null);
+  const onSearch = useCallback(() => {
+    let payload = searchBar;
 	   payload  = date !== '' ? payload + 'from=' + date.slice(0, 10) + '&' : payload + '';
-	   payload  = source !== '' ? payload + 'source=' + source + '&' : payload + '';
-      getsearchApi(payload)
-        .then(res => {
-        	console.log('filter updated', res);
-        })
-        .catch(err => {
-          console.log(err.payload.message);
-        });
-    }
-  };
+	   payload  = source.length > 0  ? payload + 'sources=' + source.toString() + '&' : payload + '';
+    if (payload === '') return; 
+    getsearchApi(payload)
+      .then(res => {
+        console.log('filter updated', res);
+      })
+      .catch(err => {
+        setError(err.payload?.response?.data?.message);
+      });
+  }, [source, date, getsearchApi, searchBar ]);
   const handleDate = (event: any) => {
     setDate(event.target.value);
-    onSearch();
   };
+  const clickSourceHandler = (e, item) =>{
+  	if (e.target.checked) {
+      setSource([
+        ...source,
+        item.id,
+   	  ]);
+    } else {
 
-  const handleSource = (event: any) => {
-    setSource(event.target.value);
-    onSearch();
+      const newSource = source.filter((list) => list !== item.id);
+      setSource(newSource);
+    }
   };
+  const closeToast = () => setError(null);
+  useEffect(() => {
+    onSearch();
+  }, [ onSearch ]);
   return (
 		<MainLayout>
 		<Container>
@@ -56,54 +68,32 @@ const Search = (props: Props)=>{
 		<Col xs={6} md={3}>
 		<div className="widget widget-social">
 		<h6 className="widget-title">Filter by Date</h6>
-		<Form.Control type="date" onClick={handleDate}/>
+		<Form.Control  type="date" onChange={handleDate}/>
 		</div>
 		<div className="widget widget-social">
 		<h6 className="widget-title">Filter by Source</h6>
-		<Form.Check onClick={handleSource} type="radio" label="Bbc-news" aria-label="radio 1" />
-		<Form.Check type="radio" label="CNN" aria-label="radio 1" />
-		<Form.Check type="radio" label="NewYork Times" aria-label="radio 1" />
-		<Form.Check type="radio" label="The Guardian" aria-label="radio 1" />
+		{SourceArrays.map((item, index)=>(
+			<div 
+            key={index}><Form.Check
+            inline
+            label={item.name}
+            onClick={(e) => clickSourceHandler(e, item)}
+            name="group1"
+            type='checkbox'
+            id={item.id}
+          /></div>
+		))}
 		</div>
 		</Col>
 		<Col xs={6} md={9}>
 		<Row>
-		{searchNews.slice(0, 9).map((item, index) =>(
-		<Col key={index} xs={6} md={4}>
-		  	<div className="single-post-wrap style-box">
-		    <div className="thumb">
-		      <img src="https://solverwp.com/demo/react/nextpage/assets/img/tech/1.png" alt="img" />
-		    </div>
-		    <div className="details">
-		      <div className="post-meta-single mb-4 pt-1">
-		        <ul>
-		          <li>
-		            <a className="tag-base tag-light-blue" href="#/cat-sports">
-		              Tech
-		            </a>
-		          </li>
-		          <li>
-		            <i className="fa fa-user" />
-		            {item.author}
-		          </li>
-		        </ul>
-		      </div>
-		      <h6 className="title">
-		        <a href="#/blog-details">
-		          {item.title}
-		        </a>
-		      </h6>
-		      <p>{item.title}</p>
-		      <a className="btn btn-base mt-4" href={item.url}>
-		        Read more
-		      </a>
-		    </div>
-		  </div>
-		</Col>
+		{searchNews.map((item, index) =>(
+			<SearchCard item={item} index={index} />
 		  ))}
 		</Row>
 		</Col>
 		</Row>
+		<ErrorToast message={error} showErrorToast={error ? true : false} closeToast={closeToast}/>
 		</Container>
 		</MainLayout>
   );

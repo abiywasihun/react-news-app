@@ -9,7 +9,9 @@ export const getsearchApi = (payload: any) => dispatch => {
     })
     .catch(err => Promise.reject(dispatch(actions.searchFailed(err))));
 };
-export const searchBar = (payload: any) => dispatch => {
+
+export const searchBarData = (payload: any) => dispatch => {
+  console.log(payload);
   return dispatch(actions.searchBarSuccess(payload));
 
 };

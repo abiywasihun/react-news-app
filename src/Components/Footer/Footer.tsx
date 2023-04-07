@@ -4,6 +4,7 @@ import { BsFacebook } from 'react-icons/bs';
 import { BsTwitter } from 'react-icons/bs';
 import { BsYoutube } from 'react-icons/bs';
 import { BsInstagram } from 'react-icons/bs';
+import Nav from 'react-bootstrap/Nav';
 import { BsGoogle } from 'react-icons/bs';
 import './Footer.css';
 
@@ -13,22 +14,17 @@ const Footer = ()=>{
 		<Container>
 		<div className="footer-top text-center">
 		<div className="logo">
-		<a className="text-5xl no-underline" href="#alt">
+		<a className="text-5xl no-underline text-white" href="#alt">
 			Instant News
 		</a>
 		</div>
 		<ul className="social-area">
-		<li><a className="facebook-icon" href="#facebook">
-		<BsFacebook /></a></li>
-		<li><a className="twitter-icon" href="#twitter">
-		<BsTwitter /></a></li>
-		<li><a className="youtube-icon" href="#youtube">
-		<BsYoutube /></a></li>
-		<li><a className="instagram-icon" href="#instagram">
-		<BsInstagram /></a></li>
-		<li><a className="google-icon" href="#google">
-		<BsGoogle /></a></li></ul></div>
-		<div className="footer-bottom text-center go-top">
+		  <li><Nav.Link className="nav-social-media"><BsFacebook /></Nav.Link></li>
+      <li><Nav.Link className="nav-social-media"><BsTwitter/></Nav.Link></li>
+      <li><Nav.Link className="nav-social-media"><BsYoutube /></Nav.Link></li>
+      <li><Nav.Link className="nav-social-media"><BsInstagram/></Nav.Link></li>
+      <li><Nav.Link className="nav-social-media"><BsGoogle/></Nav.Link></li>
+    </ul>
 		<ul className="widget_nav_menu">
 		<li><a href="#/autho">Author</a></li><li><a href="#/blog">Blog</a></li>
 		<li><a href="#/cat-page">Tech News</a></li><li><a href="#/cat-fashion">Fashion</a></li>

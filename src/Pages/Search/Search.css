@@ -26,10 +26,10 @@
     padding: 25px;
 }
 .post-meta-single ul li {
-    display: inline-block;
-    margin: 0 6px;
-    color: #201654;
-    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: .6rem;
 }
 .single-post-wrap .details .title {
     margin-bottom: 0;
