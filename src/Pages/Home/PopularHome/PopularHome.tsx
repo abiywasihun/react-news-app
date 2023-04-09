@@ -53,7 +53,7 @@ const PopularHome: React.FC<Props> = ({
 }) => {
   const myRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    // Fetch the top news list on mount
+    // Fetch the popular news list on mount
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -90,22 +90,22 @@ const PopularHome: React.FC<Props> = ({
     <div className="post-area bg-sky pt-20 pb-16 go-top"  ref={myRef}>
       <Container>
         <Row>
-          <Col xs={6} md={3}>
+          <Col xs={12} md={3}>
             {popularNews && (
               <PopularList popularItems={popularNews?.slice(0, 4)} />
             )}
           </Col>
-          <Col xs={6} md={3}>
+          <Col xs={12} md={3}>
             {popularNews && (
               <PopularList popularItems={popularNews?.slice(4, 8)} />
             )}
           </Col>
-          <Col xs={6} md={3}>
+          <Col xs={12} md={3}>
             {popularNews && (
               <PopularList popularItems={popularNews?.slice(5, 9)} />
             )}
           </Col>
-          <Col xs={6} md={3}>
+          <Col xs={12} md={3}>
             <Tab.Container id="left-tabs-example" defaultActiveKey="economy">
               <Nav variant="pills">
                 <NavItem eventKey="economy" displayText="Economy" />

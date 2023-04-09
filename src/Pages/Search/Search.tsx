@@ -52,10 +52,12 @@ const Search: React.FC<Props> = ({
     let payload = searchBar;
     payload =
       date !== ''
-        ? payload + 'from=' + date.slice(0, 10) + '&'
-        : payload + '';
+        ? `${payload}from=${date.slice(0, 10)}&`
+        : `${payload} `; 
     payload =
-      source.length > 0 ? payload + 'sources=' + source.toString() + '&' : payload + '';
+      source.length > 0 
+        ? `${payload}sources=${source.toString()}&`
+        : `${payload} `;
     if (payload === '') return;
     getsearchApi(payload)
       .then((res) => {
@@ -89,7 +91,7 @@ const Search: React.FC<Props> = ({
     <MainLayout>
       <Container>
         <Row>
-          <Col xs={6} md={3}>
+          <Col xs={12} md={3}>
             <div className="widget widget-social">
               <h6 className="widget-title">Filter by Date</h6>
               <Form.Control type="date" onChange={handleDate} />
@@ -110,7 +112,7 @@ const Search: React.FC<Props> = ({
               ))}
             </div>
           </Col>
-          <Col xs={6} md={9}>
+          <Col xs={12} md={9}>
             <Row>
               {searchNews.map((item, index) => (
                 <SearchCard item={item} index={index} key={index} />

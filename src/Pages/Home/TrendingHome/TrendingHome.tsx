@@ -63,9 +63,9 @@ const TrendingHome: React.FC<Props> = ({
   worldNews,
 }) => {
   const myRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    // Fetch the top news list on mount
+    // Fetch the popular news list on mount
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -82,7 +82,7 @@ const TrendingHome: React.FC<Props> = ({
       },
       {
         root: null,
-        rootMargin: '0px',
+        rootMargin: '10px',
         threshold: 1.0,
       },
     );
@@ -97,13 +97,14 @@ const TrendingHome: React.FC<Props> = ({
       }
     };
   }, [getTrendingNewsList, getArtNewsList, getScienceNewsList, getNySourcesNewsList, getNyCategoriesNewsList, getWorldNewsList, preference, isAuthenticated]);
+  console.log(myRef);
 
   return (
-    <div ref={myRef}>
+    <div>
       <div className="post-area pt-20 pb-16 go-top">
-        <Container>
+        <Container  ref={myRef}>
           <Row>
-            <Col xs={6} md={3}>
+            <Col xs={12} md={3}>
               {/* Trending cards */}
               <TrendingCards trendingNews={trendingNews.slice(1, 3)} />
             </Col>
@@ -111,11 +112,11 @@ const TrendingHome: React.FC<Props> = ({
               {/* Trending tabs */}
               <Tab.Container id="left-tabs-example" defaultActiveKey="arts">
                 <Row>
-                  <div className="pb-4 flex items-center">
-                    <Col xs={6} md={4}>
+                  <Row>
+                    <Col xs={12} md={4}>
                       <h6 className="trending_title">Trending News</h6>
                     </Col>
-                    <Col xs={8} md={8} className="flex justify-end">
+                    <Col xs={12} md={8} className="flex justify-end">
                       {/* Tabs */}
                       <Nav variant="pills">
                         <NavItem eventKey="arts" displayText="Art" />
@@ -123,7 +124,7 @@ const TrendingHome: React.FC<Props> = ({
                         <NavItem eventKey="world" displayText="World" />
                       </Nav>
                     </Col>
-                  </div>
+                  </Row>
                   {/* Tab content */}
                   <Tab.Content>
                     <Tab.Pane eventKey="arts">
@@ -139,7 +140,7 @@ const TrendingHome: React.FC<Props> = ({
                 </Row>
               </Tab.Container>
             </Col>
-            <Col xs={6} md={3}>
+            <Col xs={12} md={3}>
               {/* Trending cards */}
               <TrendingCards trendingNews={trendingNews.slice(3, 5)} />
             </Col>

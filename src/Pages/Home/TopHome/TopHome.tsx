@@ -124,7 +124,7 @@ const TopHome: React.FC<Props> = ({
             </Row>
           </Col>
 
-          <Col xs={6} md={3}>
+          <Col xs={12} md={3}>
             <div className="section-title style-two mb-4">
               <h6 className="title">Latest News</h6>
             </div>
@@ -152,7 +152,7 @@ const TopHome: React.FC<Props> = ({
             ))}
           </Col>
 
-          <Col xs={6} md={3} className="widget-category">
+          <Col xs={12} md={3} className="widget-category">
             <div className="section-title style-two mb-4">
               <h6 className="title">Category</h6>
             </div>

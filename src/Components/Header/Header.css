@@ -31,3 +31,20 @@ padding: 25px 0;
     border-top-right-radius: unset !important;
     border-bottom-right-radius: unset !important;
 }
+@media only screen and (max-width: 600px)  {
+.nav-color {
+    color: gray !important;
+    font-size: 20px;
+    margin-left: 0;
+}
+.nav-items{
+    align-items: flex-start;
+    font-size: 20px;
+    margin-left: 0;
+    gap: .8rem;
+    margin-top: 16px;
+}
+.width-form{
+    width: 100%;
+}
+}
