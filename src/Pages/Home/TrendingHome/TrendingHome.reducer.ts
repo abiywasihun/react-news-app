@@ -30,6 +30,14 @@ export const TrendingHomeReducer = (state = initialState, action?:any) =>
         draft.loading = false;
         draft.worldNews = action.payload.results;
         break;
+      case types.GET_CATEGORIES_NEWS_LIST_SUCCESS:
+        draft.loading = false;
+        draft.trendingNews = action.payload.results;
+        break;
+      case types.GET_SOURCE_NEWS_LIST_SUCCESS:
+        draft.loading = false;
+        draft.worldNews = action.payload.results;
+        break;
       case types.GET_TRENDING_HOME_LIST_FAILED:
         draft.loading = false;
         break;

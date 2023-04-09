@@ -1,4 +1,5 @@
 import React from 'react';
+import listIm from '../../assets/1l.png';
 import { FaClock } from 'react-icons/fa';
 
 const PopularTab = ({ popularTabs }:any)=>(
@@ -7,7 +8,7 @@ const PopularTab = ({ popularTabs }:any)=>(
   <div key={index} className="single-post-list-wrap">
     <div className="media">
       <div className="media-left">
-        <img src="https://solverwp.com/demo/react/nextpage/assets/img/post/list/1.png" alt="img" />
+        <img src={listIm} alt="img" />
       </div>
       <div className="media-body">
         <div className="details">

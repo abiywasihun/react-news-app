@@ -25,6 +25,13 @@ export const PopularHomeReducer = (state = initialState, action?:any) =>
         draft.loading = false;
         draft.politicsNews = action.payload.response.results;
         break;
+      case types.GET_CATEGORY_NEWS_LIST_SUCCESS:
+        draft.loading = false;
+        draft.popularNews = action.payload.response.results;
+        break;
+      case types.GET_SOURCE_NEWS_LIST_SUCCESS:
+        draft.economyNews = action.payload.response.results;
+        break;
       case types.GET_POPULAR_HOME_LIST_FAILED:
         draft.loading = false;
         break;

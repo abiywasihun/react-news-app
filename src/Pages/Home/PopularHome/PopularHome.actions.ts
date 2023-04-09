@@ -47,3 +47,37 @@ export const getPoliticsNewsFailed = payload => ({
   type: types.GET_POLITICS_NEWS_LIST_FAILED,
   payload,
 });
+
+
+export const getCategoryNewsRequested = () => ({
+  type: types.GET_CATEGORY_NEWS_LIST_REQUESTED,
+});
+
+export const getCategoryNewsSuccess = payload => {
+  return {
+    type: types.GET_CATEGORY_NEWS_LIST_SUCCESS,
+    payload,
+  };
+};
+
+export const getCategoryNewsFailed = payload => ({
+  type: types.GET_CATEGORY_NEWS_LIST_FAILED,
+  payload,
+});
+
+
+export const getSourceNewsRequested = () => ({
+  type: types.GET_SOURCE_NEWS_LIST_REQUESTED,
+});
+
+export const getSourceNewsSuccess = payload => {
+  return {
+    type: types.GET_SOURCE_NEWS_LIST_SUCCESS,
+    payload,
+  };
+};
+
+export const getSourceNewsFailed = payload => ({
+  type: types.GET_SOURCE_NEWS_LIST_FAILED,
+  payload,
+});

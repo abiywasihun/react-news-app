@@ -1,56 +1,45 @@
-const mockProducts = [
-  {
-    id: '1',
-    name: 'Iphone',
-    quantity: 100,
-    price: 27000000,
-  },
-  {
-    id: '2',
-    name: 'Samsung',
-    quantity: 28,
-    price: 22000000,
-  },
-  {
-    id: '3',
-    name: 'Nokia',
-    quantity: 10,
-    price: 15000000,
-  },
-  {
-    id: '4',
-    name: 'Sony',
-    quantity: 44,
-    price: 25000000,
-  },
-];
+import { newsApiAxios, nyApiAxios, guardianApiAxios } from './axios';
+import { ENDPOINT } from '../constants/endpoint';
+import { NEWS_API_KEY, NEWYORK_TIMES_API_KEY, GUARDIAN_API_KEY } from '../utils/config';
 
-export const getProductListApi = (): Promise<any> =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        data: {
-          products: mockProducts,
-        },
-        message: 'Lấy sản phẩm thành công',
-      });
-    }, 100);
-  });
 
-export const getProductItemApi = (id: string): Promise<any> =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      const products = mockProducts.find(product => product.id === id);
-      if (products) {
-        resolve({
-          data: {
-            products,
-          },
-          message: 'Lấy sản phẩm thành công',
-        });
-      } else {
-        console.log('Hello');
-        // reject(new Error('Không tìm thấy sản phẩm'));
-      }
-    }, 100);
-  });
+export const getTopNewsApiBySource = (sources:string):
+Promise<any> =>{
+  const search='sources=' + sources +'&';
+  const endpoint = ENDPOINT.TOPHEADLINES + '?' + search + 'pageSize=3&apiKey=' + NEWS_API_KEY;
+  return newsApiAxios.get(endpoint);
+};
+
+export const getTopNewsApiByCategory = (categories:string):
+Promise<any> =>{
+  //unlike sources, categories are filtered by only one.
+  const category=categories.split(',');
+  const random = Math.floor(Math.random() * category.length);
+  const search='category=' + category[random] +'&';
+  const endpoint = ENDPOINT.TOPHEADLINES + '?' + search + 'pageSize=7&apiKey=' + NEWS_API_KEY;
+  return newsApiAxios.get(endpoint);
+};
+
+export const getNyCategoriesNewsApi = (categories): Promise<any> =>{
+  const search="fq=news_desk:" + (categories) +'&';
+  const endpoint = ENDPOINT.ARTICLESEARCHJSON + '?' + search + 'api-key=' + NEWYORK_TIMES_API_KEY;
+  return nyApiAxios.get(endpoint);
+};
+
+export const getNySourcesNewsApi = (sources): Promise<any> =>{
+  const search="fq=source:" + (sources) +'&';
+  const endpoint = ENDPOINT.ARTICLESEARCHJSON + '?' + search + 'api-key=' + NEWYORK_TIMES_API_KEY;
+  return nyApiAxios.get(endpoint);
+};
+
+export const getGuardianCategoriesNewsApi = (categories): Promise<any> =>{
+  const search="q=" + categories.replaceAll(",", " OR ") +'&';
+  const endpoint = ENDPOINT.THEGUARDIAN + '?' + search + 'api-key=' + NEWYORK_TIMES_API_KEY;
+  return guardianApiAxios.get(endpoint);
+};
+
+export const getGuardianSourceNewsApi = (sources): Promise<any> =>{
+  const search="q=" + sources.replaceAll(",", " OR ") +'&';
+  const endpoint = ENDPOINT.THEGUARDIAN + '?' + search + 'api-key=' + NEWYORK_TIMES_API_KEY;
+  return guardianApiAxios.get(endpoint);
+};

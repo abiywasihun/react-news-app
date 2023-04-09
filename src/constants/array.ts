@@ -70,3 +70,11 @@ export const SearchCategories = [
   'Sports',
   'Technology',
 ];
+
+export const socialMediaIcon = [
+  'BsFacebook',
+  'BsTwitter',
+  'BsYoutube',
+  'BsInstagram',
+  'BsGoogle',
+];

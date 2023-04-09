@@ -1,5 +1,5 @@
 import * as actions from './App.actions';
-import { getAllPreferences } from '../apis/user.api';
+import { getAllPreferences, postUserPrefernces } from '../apis/user.api';
 
 
 export const logout = () => dispatch => {
@@ -15,6 +15,15 @@ export const getAllPreference = () => dispatch => {
     .catch(err => Promise.reject(dispatch(actions.preferenceFailed(err))));
 };
 
-export const updatIsAuthenticated = () =>dispatch =>{
+export const updatIsAuthenticated = () => dispatch =>{
   return dispatch(actions.authenticated());
+};
+
+export const addUserPerefernce = (payload: any) => dispatch => {
+  dispatch(actions.addUserPerefernceRequested());
+  return postUserPrefernces(payload)
+    .then(res => {
+      return dispatch(actions.addUserPerefernceRequestedSuccess(res));
+    })
+    .catch(err => Promise.reject(dispatch(actions.addUserPerefernceRequestedFailed(err))));
 };

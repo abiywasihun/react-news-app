@@ -5,6 +5,7 @@ export const ENDPOINT = {
   ARTSJSON: '/arts.json',
   SCIENCEJSON: '/science.json',
   WORLDJSON: '/world.json',
+  ARTICLESEARCHJSON: '/articlesearch.json',
   THEGUARDIAN: '/search',
   GUARDIANECONOMY:'search?q=economy',
   GUARDIANPOLITICS:'search?q=politics',

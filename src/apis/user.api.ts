@@ -31,6 +31,9 @@ export const signupApi = ({
 };
 
 export const getAllPreferences = (): Promise<any> =>{
-  const endpoint = ENDPOINT.PREFERENCE;
-  return laravelApiAxios.get(endpoint);
+  return laravelApiAxios.get(ENDPOINT.PREFERENCE);
+};
+
+export const postUserPrefernces = (payload: any): Promise<any> =>{
+  return laravelApiAxios.post(ENDPOINT.PREFERENCE, payload);
 };

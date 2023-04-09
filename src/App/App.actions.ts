@@ -15,6 +15,20 @@ export const preferenceSuccess = payload => ({
   payload,
 });
 
+export const addUserPerefernceRequested = () => ({
+  type: types.ADD_USER_PREFERENCE_REQUESTED,
+});
+
+export const addUserPerefernceRequestedSuccess = payload => ({
+  type: types.ADD_USER_PREFERENCE_SUCCESS,
+  payload,
+});
+
+export const addUserPerefernceRequestedFailed = payload => ({
+  type: types.ADD_USER_PREFERENCE_FAILED,
+  payload,
+});
+
 export const preferenceFailed = payload => ({
   type: types.PREFERENCE_FAILED,
   payload,

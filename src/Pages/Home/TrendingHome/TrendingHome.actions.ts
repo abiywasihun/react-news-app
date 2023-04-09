@@ -64,3 +64,37 @@ export const getWorldNewsFailed = payload => ({
   type: types.GET_WORLD_NEWS_LIST_FAILED,
   payload,
 });
+
+
+export const getCategoriesNewsRequested = () => ({
+  type: types.GET_CATEGORIES_NEWS_LIST_REQUESTED,
+});
+
+export const getCategoriesNewsSuccess = payload => {
+  return {
+    type: types.GET_CATEGORIES_NEWS_LIST_SUCCESS,
+    payload,
+  };
+};
+
+export const getCategoriesNewsFailed = payload => ({
+  type: types.GET_CATEGORIES_NEWS_LIST_FAILED,
+  payload,
+});
+
+
+export const getSourcesNewsRequested = () => ({
+  type: types.GET_SOURCE_NEWS_LIST_REQUESTED,
+});
+
+export const getSourcesNewsSuccess = payload => {
+  return {
+    type: types.GET_SOURCE_NEWS_LIST_SUCCESS,
+    payload,
+  };
+};
+
+export const getSourcesNewsFailed = payload => ({
+  type: types.GET_SOURCE_NEWS_LIST_FAILED,
+  payload,
+});

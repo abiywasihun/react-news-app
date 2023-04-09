@@ -162,6 +162,10 @@ background: #f7fbff;
     overflow: hidden;
     border-radius: 5px;
 }
+.top-img{
+    width: 100% !important;
+    height: 100% !important;
+}
 .single-post-wrap .thumb img {
     transition: 0.8s;
     transform: scale(1.01);

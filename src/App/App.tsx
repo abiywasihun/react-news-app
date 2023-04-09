@@ -17,16 +17,17 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 interface Props extends ConnectedProps<typeof connector> {}
 function App(props: Props) {
-  const { getAllPreference, isAuthenticated } = props;
+  const { updatIsAuthenticated, getAllPreference, isAuthenticated } = props;
   useEffect(() => {
     const user = storage.getToken();
     if (user && !isAuthenticated) {//This one checks when the page first reload
-      getAllPreference();
       updatIsAuthenticated();
+      getAllPreference();
     } else if (user) { 
       getAllPreference(); //fetchs user preferences
     }
-  }, [isAuthenticated, getAllPreference]);
+  }, [updatIsAuthenticated, isAuthenticated, getAllPreference]);
+  console.log(isAuthenticated);
   return (
     <Routes />
   );

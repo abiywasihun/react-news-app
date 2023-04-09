@@ -1,42 +1,43 @@
-import React, { useEffect } from 'react';
-import { BsFacebook } from 'react-icons/bs';
-import { BsTwitter } from 'react-icons/bs';
-import { BsYoutube } from 'react-icons/bs';
-import { BsInstagram } from 'react-icons/bs';
-import { BsGoogle } from 'react-icons/bs';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { logout } from '../../App/App.thunks';
+import { logout, addUserPerefernce } from '../../App/App.thunks';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import { PATH } from '../../constants/paths';
 import { Link } from 'react-router-dom';
 import { connect, ConnectedProps } from 'react-redux';
 import SearchBar from '../SearchBar/SearchBar';
+import PreferenceModal from '../Modal/PreferenceModal';
+import { SocialMediaLink } from '../NavItem/SocialMediaLink';
 import ad from '../../assets/1.png';
 import './Header.css';
 
 const mapStateToProps = state => ({
+  loading: state.loading,
   preference: state.app.preference,
   isAuthenticated: state.app.isAuthenticated,
 });
 
 const mapDispatchToProps = {
   logout,
+  addUserPerefernce,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 interface Props extends ConnectedProps<typeof connector> {}
 const Header = (props: Props)=>{
-  const { logout, preference, isAuthenticated } = props;
+  const { addUserPerefernce, logout, preference, loading, isAuthenticated } = props;
+  const [preferenceModal, setPreferenceModal] = useState(false);
   const handleLogout = () => logout();
 
   useEffect(() => {
-    console.log(preference, isAuthenticated);
-  }, [preference]);
+    const status = preference?.length === 0 && isAuthenticated ? true : false;
+    setPreferenceModal(status);
+  }, [preference, isAuthenticated]);
 
   return (
     <>
@@ -51,11 +52,7 @@ const Header = (props: Props)=>{
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <ul className="nav-ul">
-              <li><Nav.Link className="nav-social-media"><BsFacebook /></Nav.Link></li>
-              <li><Nav.Link className="nav-social-media"><BsTwitter/></Nav.Link></li>
-              <li><Nav.Link className="nav-social-media"><BsYoutube /></Nav.Link></li>
-              <li><Nav.Link className="nav-social-media"><BsInstagram/></Nav.Link></li>
-              <li><Nav.Link className="nav-social-media"><BsGoogle/></Nav.Link></li>
+             <SocialMediaLink />
             </ul>
           </Navbar.Collapse>
         </Container>
@@ -92,9 +89,13 @@ const Header = (props: Props)=>{
            {isAuthenticated ? (
             <Nav.Link className="text-white" onClick={handleLogout}>Logout</Nav.Link>
            ) : (
-            <><Nav.Link><Link className="text-white no-underline" to={PATH.LOGIN}>Login</Link></Nav.Link>
-            <Nav.Link><Link  className="text-white no-underline" to={PATH.SIGNUP}>Register</Link></Nav.Link></>)}
+            <><Link className="text-white no-underline mr-2" to={PATH.LOGIN}>Login</Link>
+            <Link  className="text-white no-underline ml-2" to={PATH.SIGNUP}>Register</Link></>)}
           </Nav>
+          <PreferenceModal preferenceModal={preferenceModal} 
+          addUserPerefernce={addUserPerefernce} 
+          loading={loading} 
+          setPreferenceModal={setPreferenceModal}/>
         </Container>
       </Navbar>
     </>

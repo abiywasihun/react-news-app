@@ -2,8 +2,10 @@ import { FaClock } from 'react-icons/fa';
 import React from 'react';
 
 
-const TrendingCards = ({ item }:any)=>(
-   <div key={item.id} className="single-post-wrap style-overlay-bg">
+const TrendingCards = ({ trendingNews }:any)=>(
+  <>
+   {trendingNews.map((item, index) =>(
+   <div key={index} className="single-post-wrap style-overlay-bg">
     <div className="thumb">
       <img src={item.multimedia[0].url} alt="img" />
     </div>
@@ -30,6 +32,8 @@ const TrendingCards = ({ item }:any)=>(
       </h6>
     </div>
   </div>
+   ))}
+   </>
 );
 
 export default  TrendingCards;

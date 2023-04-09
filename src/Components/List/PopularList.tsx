@@ -1,11 +1,13 @@
 import React from 'react';
+import listIm from '../../assets/1l.png';
+import topIm from '../../assets/24.png';
 import { FaClock } from 'react-icons/fa';
 const PopularList = ({ popularItems }:any)=>(
 	<>
 	{popularItems?.slice(0, 1).map((item, index) =>(
 	<div key={index} className="single-post-wrap style-overlay">
     <div className="thumb">
-      <img src="https://solverwp.com/demo/react/nextpage/assets/img/post/24.png" alt="img" />
+      <img src={topIm} alt="img" />
       <a className="tag-base tag-blue" href="#/cat-page">
         {item.pillarName}
       </a>
@@ -27,7 +29,7 @@ const PopularList = ({ popularItems }:any)=>(
   <div key={index} className="single-post-list-wrap">
     <div className="media">
       <div className="media-left">
-        <img src="https://solverwp.com/demo/react/nextpage/assets/img/post/list/1.png" alt="img" />
+        <img src={listIm} alt="img" />
       </div>
       <div className="media-body">
         <div className="details">

@@ -19,6 +19,20 @@ export const TopHomeReducer = (state = initialState, action?:any) =>
       case types.GET_TOP_HOME_LIST_FAILED:
         draft.loading = false;
         break;
+      case types.GET_TOP_HOME_CATEGORY_REQUESTED:
+        draft.loading = true;
+        break;
+      case types.GET_TOP_HOME_CATEGORY_SUCCESS:
+        draft.loading = false;
+        draft.topHeadlines = [...draft.topHeadlines, ...action.payload.articles];
+        break;
+      case types.GET_TOP_HOME_SOURCE_SUCCESS:
+        draft.loading = false;
+        draft.topHeadlines = [...draft.topHeadlines, ...action.payload.articles];
+        break;
+      case types.GET_TOP_HOME_CATEGORY_FAILED:
+        draft.loading = false;
+        break;
       default:
         return state;
     }

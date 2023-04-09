@@ -6,7 +6,6 @@ export const signupAPI = (payload: any) => dispatch => {
   dispatch(actions.signupRequested());
   return signupApi(payload)
     .then(res => {
-      console.log(res);
       storage.setToken(res.data);
       return dispatch(actions.signupSuccess(res));
     })
