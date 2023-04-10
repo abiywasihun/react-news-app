@@ -2,6 +2,11 @@
 
 
 I used three APIs from APIs that you gave to me such as Open News, Newyork times, and the Guardian 
+
+Create an account on the three API providers and generate the API key.
+
+Replace API keys in the .env file with the one you created
+
 From the three APIs I get images only from the Newyork  times API so I used static images for open news API and the Guardian apt
 
 I made the system dockerized and here are the steps to run the system
