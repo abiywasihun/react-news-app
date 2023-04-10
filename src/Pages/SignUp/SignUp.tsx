@@ -23,7 +23,6 @@ const SignUp = (props: Props) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassowrd] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,14 +35,11 @@ const SignUp = (props: Props) => {
   const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
-  const handleConfirmPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setConfirmPassowrd(event.target.value);
-  };
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!loading) {
-      const payload = { name, email, password, confirmPassword };
+      const payload = { name, email, password };
       signupAPI(payload)
         .then(res => {
           navigate(PATH.HOME);
@@ -80,16 +76,10 @@ const SignUp = (props: Props) => {
               onChange={handlePassword}
               className="form-control form-control-lg mb-4"
             />
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              onChange={handleConfirmPassword}
-              className="form-control form-control-lg mb-4"
-            />
             {error && (
               <div className="mb-3 text-danger text-xl-center">{error}</div>
             )}
-            <button type="submit" className="btn btn-block btn-info btn-lg">
+            <button type="submit" className="btn btn-block btn-primary btn-lg">
               SignUp
             </button>
             <p>already have an account <Link to={PATH.LOGIN}>Sign in</Link></p>

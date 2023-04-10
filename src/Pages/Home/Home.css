@@ -267,3 +267,11 @@ ol, ul{
     width: 100%;
   }
 }
+.trendingHeight{
+   height: 100vh;
+}
+@media only screen and (max-width: 600px)  {
+.trendingHeight{
+   height: auto;
+}
+}

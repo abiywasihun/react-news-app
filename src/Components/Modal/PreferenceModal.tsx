@@ -68,11 +68,10 @@ function ModalData(props) {
       <Modal.Body>
         <div className="border-b-2 border-solid border-solid mb-4">
         <h4>Category</h4>
-        {SearchCategories.map((item, index)=>(
+        {SearchCategories.slice(1).map((item, index)=>(
             <Form.Check
                   key={index}
                   inline
-                  disabled={index==1}
                   label={item}
                   onClick={(e) => clickCategoryHandler(e, item)}
                   name="group1"

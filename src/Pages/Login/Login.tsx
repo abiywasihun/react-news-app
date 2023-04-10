@@ -69,7 +69,7 @@ const Login = (props: Props) => {
             {error && (
               <div className="mb-3 text-danger text-xl-center">{error}</div>
             )}
-            <button type="submit" className="btn btn-block btn-info btn-lg">
+            <button type="submit" className="btn btn-block btn-primary btn-lg">
               Login
             </button>
             <p>"Don't have an account yet? <Link to={PATH.SIGNUP}>Sign Up</Link></p>

@@ -106,7 +106,7 @@ const Header = (props: Props)=>{
                 </Form>
                   <Nav className="ml-4 d-flex items-center nav-items">
                    {isAuthenticated ? (
-                    <Nav.Link  onClick={handleLogout}>Logout</Nav.Link>
+                    <Nav.Link className="text-white nav-color" onClick={handleLogout}>Logout</Nav.Link>
                    ) : (
                     <><Link className="text-white no-underline mr-2 nav-color" to={PATH.LOGIN}>Login</Link>
                     <Link   className="text-white no-underline ml-2 nav-color" to={PATH.SIGNUP}>Register</Link></>)}

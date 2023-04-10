@@ -101,7 +101,7 @@ const TrendingHome: React.FC<Props> = ({
 
   return (
     <div>
-      <div className="post-area pt-20 pb-16 go-top">
+      <div className="post-area pt-20 pb-16 go-top trendingHeight">
         <Container  ref={myRef}>
           <Row>
             <Col xs={12} md={3}>
